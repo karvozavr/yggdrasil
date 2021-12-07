@@ -1,6 +1,8 @@
 [package]
 name = "yggdrasil"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 
 [dependencies]
+uuid = { version = "0.8.2", features = ["v4"] }
+tempdir = "0.3.7"
