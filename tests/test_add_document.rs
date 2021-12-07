@@ -1,36 +1,18 @@
 mod fixtures;
-use fixtures::temp_directory;
 use std::fs::File;
 use std::path::Path;
 
-use yggdrasil::add_file::{
-    add_document, AddFileError, DocumentMetadata, FileSystemMetadataStore, YggdrasilMetadataStore,
+use yggdrasil::{
+    add_file::{add_document, AddFileError},
+    metadata::FileSystemMetadataStore,
 };
-
-struct TestMetaDataStore {
-    metadata: Vec<DocumentMetadata>,
-}
-
-impl TestMetaDataStore {
-    fn new() -> TestMetaDataStore {
-        TestMetaDataStore {
-            metadata: Vec::new(),
-        }
-    }
-}
-
-impl YggdrasilMetadataStore for TestMetaDataStore {
-    fn add_document(&mut self, document_metadata: &DocumentMetadata) {
-        self.metadata.push(document_metadata.clone())
-    }
-}
 
 #[test]
 fn test_document_does_not_exist() {
     // given
-    let dir = temp_directory();
+    let dir = fixtures::temp_directory();
     let file_path = dir.join(Path::new("foo/bar.txt"));
-    let mut metadata_store = TestMetaDataStore::new();
+    let mut metadata_store = fixtures::TestMetaDataStore::default();
 
     // when
     let result = add_document(&file_path, &mut metadata_store);
@@ -42,7 +24,7 @@ fn test_document_does_not_exist() {
 #[test]
 fn test_document_is_added_with_id() {
     // given
-    let dir = temp_directory();
+    let dir = fixtures::temp_directory();
     let file_path = dir.join(Path::new("foo/bar.txt"));
     let prefix = file_path.parent().unwrap();
     std::fs::create_dir_all(prefix).unwrap();
