@@ -1,7 +1,4 @@
-use std::{
-    fmt::{format, Error},
-    path::{Path, PathBuf},
-};
+use std::path::{Path, PathBuf};
 
 use uuid::Uuid;
 
