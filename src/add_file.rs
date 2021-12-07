@@ -6,7 +6,7 @@ use std::path::Path;
 pub struct AddFileError;
 
 pub fn add_document(
-    yggdrasil_storage_path: &Path,
+    yggdrasil_storage_path: &Path, // TODO use relative storage path
     metadata_store: &mut dyn YggdrasilMetadataPersister,
 ) -> Result<YggId, AddFileError> {
     if !yggdrasil_storage_path.exists() {

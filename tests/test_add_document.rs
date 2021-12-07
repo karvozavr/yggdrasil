@@ -1,5 +1,4 @@
 mod fixtures;
-use std::fs::File;
 use std::path::Path;
 
 use yggdrasil::{
@@ -26,9 +25,7 @@ fn test_document_is_added_with_id() {
     // given
     let dir = fixtures::temp_directory();
     let file_path = dir.join(Path::new("foo/bar.txt"));
-    let prefix = file_path.parent().unwrap();
-    std::fs::create_dir_all(prefix).unwrap();
-    let _ = File::create(&file_path).expect("failed to create a file");
+    fixtures::create_file(&file_path);
 
     let mut metadata_store = FileSystemMetadataStore::new(&dir);
 
