@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "yggdrasil-core",
+    "yggdrasil-core-bindings",
+]

@@ -1,0 +1,13 @@
+[package]
+name = "yggdrasil-core-bindings"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dmitrii Abramov <dmitrii.abramov@outlook.com>"]
+
+[lib]
+name = "yggdrasilcore"
+crate-type = ["dylib"]
+
+[dependencies.cpython]
+version = "0.7.0"
+features = ["extension-module"]
